@@ -10,16 +10,16 @@ public class Account {
 		
 	}
 	
-	public Account(long id, String first, String last) {
+	public Account(Long id, String first, String last) {
 		this.accountNumber = id;
 		this.firstName = first;
 		this.lastName = last;
 	}
 	
-	public long getAccountNumber() {
+	public Long getAccountNumber() {
 		return accountNumber;
 	}
-	public void setAccountNumber(long accountNumber) {
+	public void setAccountNumber(Long accountNumber) {
 		this.accountNumber = accountNumber;
 	}
 	public String getFirstName() {
