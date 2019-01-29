@@ -2,9 +2,20 @@ package com.qa.persistence.domain;
 
 public class Account {
 	
-	long accountNumber;
-	String firstName;
-	String lastName;
+	private long accountNumber;
+	private String firstName;
+	private String lastName;
+	
+	public Account() {
+		
+	}
+	
+	public Account(long id, String first, String last) {
+		this.accountNumber = id;
+		this.firstName = first;
+		this.lastName = last;
+	}
+	
 	public long getAccountNumber() {
 		return accountNumber;
 	}

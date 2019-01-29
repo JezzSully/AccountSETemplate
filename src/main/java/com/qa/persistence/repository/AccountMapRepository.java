@@ -17,7 +17,7 @@ public class AccountMapRepository implements AccountRepository{
 
 	public String createAccount(String account) {
 		
-		Account newAccount = null;
+		Account newAccount;
 		newAccount = jsonUtil.getObjectForJSON(account, Account.class);
 		this.account.put(newAccount.getAccountNumber(), newAccount);
 		return "Success";
@@ -34,7 +34,7 @@ public class AccountMapRepository implements AccountRepository{
 
 	public String updateAccount(Long id, String account) {
 		if(this.account.containsKey(id)) {
-			Account newAccount = null;
+			Account newAccount;
 			newAccount = jsonUtil.getObjectForJSON(account, Account.class);
 			this.account.put(id, newAccount);
 			return "Success";
