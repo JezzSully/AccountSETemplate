@@ -11,9 +11,11 @@ import com.qa.persistence.repository.AccountMapRepository;
 
 public class AccountServiceTest {
 
+	AccountMapRepository myRepo;
+	
 	@Before
 	public void setup() {
-	
+		myRepo = new AccountMapRepository();
 	}
 	
 	@Test
