@@ -102,17 +102,29 @@ public class AccountServiceTest {
 
 	@Test
 	public void getCountForFirstNamesInAccountWhenZeroOccurances() {
-		//?
+		assertEquals(0, myRepo.countFirstNames("TestName"));
 	}
 	
 	@Test
 	public void getCountForFirstNamesInAccountWhenOne() {
-		//?
+		Account myAccount = new Account((long) 1, "Jeremy", "Sullivan");
+		String accountJson = jsonUtil.getJSONForObject(myAccount);
+		myRepo.createAccount(accountJson);
+		assertEquals(1,myRepo.countFirstNames("Jeremy"));
 	}
 
 	@Test
 	public void getCountForFirstNamesInAccountWhenMult() {
-		//?
+		Account myAccount = new Account((long) 1, "Jeremy", "Sullivan");
+		String accountJson = jsonUtil.getJSONForObject(myAccount);
+		myRepo.createAccount(accountJson);
+		Account myAccount2 = new Account((long) 2, "Jeremy", "Surname");
+		String accountJson2 = jsonUtil.getJSONForObject(myAccount2);
+		myRepo.createAccount(accountJson2);
+		Account myAccount3 = new Account((long) 3, "FirstName", "Sullivan");
+		String accountJson3 = jsonUtil.getJSONForObject(myAccount3);
+		myRepo.createAccount(accountJson3);
+		assertEquals(2,myRepo.countFirstNames("Jeremy"));
 	}
 
 }

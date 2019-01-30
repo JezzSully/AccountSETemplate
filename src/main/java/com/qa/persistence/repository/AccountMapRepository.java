@@ -24,6 +24,7 @@ public class AccountMapRepository implements AccountRepository{
 	}
 
 	public String deleteAccount(Long id) {
+		
 		if(account.containsKey(id)) {
 			account.remove(id);
 			return "Success";
@@ -42,6 +43,18 @@ public class AccountMapRepository implements AccountRepository{
 			return "Id Not Found";
 		}
 
+	}
+	
+	public int countFirstNames(String firstName) {
+		
+		int count = 0;
+		
+		for(Long key : this.account.keySet()) {
+			if(this.account.get(key).getFirstName().equals(firstName)) {
+				count++;
+			}
+		}
+		return count;
 	}
 
 }
