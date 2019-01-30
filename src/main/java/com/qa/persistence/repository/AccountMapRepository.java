@@ -4,29 +4,44 @@ import java.util.HashMap;
 import java.util.Map;
 
 import com.qa.persistence.domain.Account;
+import com.qa.util.JSONUtil;
 
 public class AccountMapRepository implements AccountRepository{
-	
+
+	JSONUtil jsonUtil = new JSONUtil();
 	Map<Long, Account> account = new HashMap<>();
 
-	public String getAllAccounts() {
-		// TODO Auto-generated method stub
-		return null;
+	public String getAllAccounts() {		
+		return jsonUtil.getJSONForObject(account.values());
 	}
 
 	public String createAccount(String account) {
-		// TODO Auto-generated method stub
-		return null;
+		
+		Account newAccount;
+		newAccount = jsonUtil.getObjectForJSON(account, Account.class);
+		this.account.put(newAccount.getAccountNumber(), newAccount);
+		return "Success";
 	}
 
 	public String deleteAccount(Long id) {
-		// TODO Auto-generated method stub
-		return null;
+		if(account.containsKey(id)) {
+			account.remove(id);
+			return "Success";
+		} else {
+			return "Id Not Found";
+		}
 	}
 
 	public String updateAccount(Long id, String account) {
-		// TODO Auto-generated method stub
-		return null;
+		if(this.account.containsKey(id)) {
+			Account newAccount;
+			newAccount = jsonUtil.getObjectForJSON(account, Account.class);
+			this.account.put(id, newAccount);
+			return "Success";
+		} else {
+			return "Id Not Found";
+		}
+
 	}
 
 }
