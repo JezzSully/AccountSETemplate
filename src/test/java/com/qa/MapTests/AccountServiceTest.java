@@ -95,7 +95,8 @@ public class AccountServiceTest {
 	public void accountConversionToJSONTest() {
 		Account myAccount = new Account((long)1, "Jeremy", "Sullivan");
 		String accountJson = jsonUtil.getJSONForObject(myAccount);
-		assertEquals("{\"accountNumber\":1,\"firstName\":\"Jeremy\",\"lastName\":\"Sullivan\"}", accountJson);
+		System.out.println(accountJson);
+		assertEquals("{\"id\":0,\"accountNumber\":1,\"firstName\":\"Jeremy\",\"lastName\":\"Sullivan\"}", accountJson);
 	}
 
 	@Test

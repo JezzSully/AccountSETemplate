@@ -1,6 +1,6 @@
-package com.qa.persistence.repository;
+package com.qa.business;
 
-public interface AccountRepository {
+public interface BusinessInterface {
 
 	String getAllAccounts();
 	String createAccount(String account);
