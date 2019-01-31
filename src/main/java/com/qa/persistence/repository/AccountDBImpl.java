@@ -35,7 +35,7 @@ public class AccountDBImpl implements AccountRepository{
 	public String createAccount(String account) {
 		Account myAccount = jsonUtil.getObjectForJSON(account, Account.class); 
 		manager.persist(myAccount);
-		return "Success";
+		return "{\"message\": \"Success\"}";
 		//return a string for success in JSON.
 	}
 
@@ -45,20 +45,20 @@ public class AccountDBImpl implements AccountRepository{
 		Account myAccount = manager.find(Account.class, id);
 		if(myAccount != null) {
 			manager.remove(myAccount);
-			return "Success";
+			return "{\"message\": \"Success\"}";
 		} else {
-			return "Fail";
+			return "{\"message\": \"Fail\"}";
 		}
 	}
 
 	@Override
 	@Transactional(REQUIRED)
 	public String updateAccount(Long id, String account) {
-		if(deleteAccount(id).equals("Success")) {
+		if(deleteAccount(id).equals("{\"message\": \"Success\"}")) {
 			createAccount(account);
-			return "Success"; 
+			return "{\"message\": \"Success\"}"; 
 		} else {
-			return "Fail"; 
+			return "{\"message\": \"Fail\"}"; 
 		}
 	}
 

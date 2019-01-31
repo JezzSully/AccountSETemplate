@@ -11,7 +11,10 @@ public class Account {
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	private long id;
-	
+
+	public void setAccountNumber(long accountNumber) {
+		this.accountNumber = accountNumber;
+	}
 	private long accountNumber;
 	private String firstName;
 	private String lastName;
@@ -29,6 +32,14 @@ public class Account {
 		this.accountNumber = id;
 		this.firstName = first;
 		this.lastName = last;
+	}
+	
+	public long getId() {
+		return id;
+	}
+
+	public void setId(long id) {
+		this.id = id;
 	}
 	
 	public Long getAccountNumber() {
