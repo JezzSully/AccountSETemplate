@@ -9,17 +9,17 @@ import com.qa.persistence.domain.Account;
 import com.qa.util.JSONUtil;
 
 @Alternative
-public class AccountMapRepository implements AccountRepository{
+public class AccountMapRepository implements AccountRepository {
 
 	JSONUtil jsonUtil = new JSONUtil();
 	Map<Long, Account> account = new HashMap<>();
 
-	public String getAllAccounts() {		
+	public String getAllAccounts() {
 		return jsonUtil.getJSONForObject(account.values());
 	}
 
 	public String createAccount(String account) {
-		
+
 		Account newAccount;
 		newAccount = jsonUtil.getObjectForJSON(account, Account.class);
 		this.account.put(newAccount.getAccountNumber(), newAccount);
@@ -27,8 +27,8 @@ public class AccountMapRepository implements AccountRepository{
 	}
 
 	public String deleteAccount(Long id) {
-		
-		if(account.containsKey(id)) {
+
+		if (account.containsKey(id)) {
 			account.remove(id);
 			return "Success";
 		} else {
@@ -37,7 +37,7 @@ public class AccountMapRepository implements AccountRepository{
 	}
 
 	public String updateAccount(Long id, String account) {
-		if(this.account.containsKey(id)) {
+		if (this.account.containsKey(id)) {
 			Account newAccount;
 			newAccount = jsonUtil.getObjectForJSON(account, Account.class);
 			this.account.put(id, newAccount);
@@ -47,13 +47,13 @@ public class AccountMapRepository implements AccountRepository{
 		}
 
 	}
-	
+
 	public int countFirstNames(String firstName) {
-		
+
 		int count = 0;
-		
-		for(Long key : this.account.keySet()) {
-			if(this.account.get(key).getFirstName().equals(firstName)) {
+
+		for (Long key : this.account.keySet()) {
+			if (this.account.get(key).getFirstName().equals(firstName)) {
 				count++;
 			}
 		}

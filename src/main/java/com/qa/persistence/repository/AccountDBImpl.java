@@ -16,14 +16,14 @@ import javax.inject.Inject;
 
 @Transactional(SUPPORTS)
 @Default
-public class AccountDBImpl implements AccountRepository{
+public class AccountDBImpl implements AccountRepository {
 
 	@PersistenceContext(unitName = "primary")
 	private EntityManager manager;
-	
+
 	@Inject
 	private JSONUtil jsonUtil;
-	
+
 	@Override
 	public String getAllAccounts() {
 		TypedQuery<Account> query = manager.createQuery("SELECT a FROM Account a", Account.class);
@@ -33,17 +33,17 @@ public class AccountDBImpl implements AccountRepository{
 	@Override
 	@Transactional(REQUIRED)
 	public String createAccount(String account) {
-		Account myAccount = jsonUtil.getObjectForJSON(account, Account.class); 
+		Account myAccount = jsonUtil.getObjectForJSON(account, Account.class);
 		manager.persist(myAccount);
 		return "{\"message\": \"Success\"}";
-		//return a string for success in JSON.
+		// return a string for success in JSON.
 	}
 
 	@Override
 	@Transactional(REQUIRED)
 	public String deleteAccount(Long id) {
 		Account myAccount = manager.find(Account.class, id);
-		if(myAccount != null) {
+		if (myAccount != null) {
 			manager.remove(myAccount);
 			return "{\"message\": \"Success\"}";
 		} else {
@@ -54,11 +54,11 @@ public class AccountDBImpl implements AccountRepository{
 	@Override
 	@Transactional(REQUIRED)
 	public String updateAccount(Long id, String account) {
-		if(deleteAccount(id).equals("{\"message\": \"Success\"}")) {
+		if (deleteAccount(id).equals("{\"message\": \"Success\"}")) {
 			createAccount(account);
-			return "{\"message\": \"Success\"}"; 
+			return "{\"message\": \"Success\"}";
 		} else {
-			return "{\"message\": \"Fail\"}"; 
+			return "{\"message\": \"Fail\"}";
 		}
 	}
 
